@@ -20,21 +20,35 @@ namespace CGWORK0913
             graphics = canvas.CreateGraphics();
             //graphics.Save
         }
-
-        string currentMode = "图形绘制";//标记当前模式名
-        FormData dfData = new FormData();//存储数据；
+        /// <summary>
+        /// 标记当前的二级菜单
+        /// </summary>
+        string currentMode = "图形绘制";
+        /// <summary>
+        /// 标记当前的三级菜单
+        /// </summary>
+        string currentState = "矩形";
+        /// <summary>
+        /// 存储数据
+        /// </summary>
+        FormData dfData = new FormData();
 
         /// <summary>
         /// 判断当前的模式,
         /// </summary>
         /// <param name="thisMode">模式名称</param>
-        void ConvertToMod(string thisMode)
+        void ConvertToModAndState(string thisMode, string thisState)
         {
             if (currentMode != thisMode)
             {
                 currentMode = thisMode;
                 graphics.Clear(Color.White);
             }
+            currentState = thisState;
+        }
+        private void 清空屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            graphics.Clear(Color.White);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,13 +58,13 @@ namespace CGWORK0913
 
         private void 绘制矩形ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("图形绘制");
-            
+            ConvertToModAndState("图形绘制", "矩形");
+
         }
 
         private void 绘制圆形ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("图形绘制");
+            ConvertToModAndState("图形绘制", "圆形");
 
         }
 
@@ -64,7 +78,7 @@ namespace CGWORK0913
 
         private void 绘制多边形ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("区域填充");
+            ConvertToModAndState("区域填充", "多边形");
 
         }
 
@@ -79,19 +93,19 @@ namespace CGWORK0913
 
         private void 绘制立方体ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("三维变换");
+            ConvertToModAndState("三维变换", "立方体");
 
         }
 
         private void 延X轴方向平移ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("三维变换");
+            ConvertToModAndState("三维变换", "平移旋转");
 
         }
 
         private void 绕X轴旋转ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("三维变换");
+            ConvertToModAndState("三维变换", "圆形");
 
         }
 
@@ -105,64 +119,14 @@ namespace CGWORK0913
 
         private void 绘制Bezier曲线ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("绘制曲线");
+            ConvertToModAndState("绘制曲线", "Bezier曲线");
 
         }
 
         private void 绘制B样条曲线ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConvertToMod("绘制曲线");
+            ConvertToModAndState("绘制曲线", "B样条曲线");
         }
 
-        bool mouseIsDown = false;
-        Point startPoint, endPoint;
-        private void canvas_MouseDown(object sender, MouseEventArgs e)
-        {
-            switch (currentMode)
-            {
-                case "图形绘制":
-                    canvas_MouseDown矩形(sender, e); break;
-                case "区域填充":
-                    canvas_MouseDown矩形(sender, e); break;
-                case "三维变换":
-                    canvas_MouseDown矩形(sender, e); break;
-                case "绘制曲线":
-                    canvas_MouseDown矩形(sender, e); break;
-
-            }
-            
-        }
-
-        private void canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            switch (currentMode)
-            {
-                case "图形绘制":
-                    canvas_MouseMove矩形(sender, e); break;
-                case "区域填充":
-                    canvas_MouseDown矩形(sender, e); break;
-                case "三维变换":
-                    canvas_MouseDown矩形(sender, e); break;
-                case "绘制曲线":
-                    canvas_MouseDown矩形(sender, e); break;
-
-            }
-        }
-
-        private void canvas_MouseUp(object sender, MouseEventArgs e)
-        {
-            switch (currentMode)
-            {
-                case "图形绘制":
-                    canvas_MouseUp矩形(sender, e); break;
-                case "区域填充":
-                    canvas_MouseDown矩形(sender, e); break;
-                case "三维变换":
-                    canvas_MouseDown矩形(sender, e); break;
-                case "绘制曲线":
-                    canvas_MouseDown矩形(sender, e); break;
-
-            }
-        }
     }
 }
