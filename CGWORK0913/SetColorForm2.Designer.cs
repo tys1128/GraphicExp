@@ -32,6 +32,10 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
+            // OKButton
+            // 
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click_1);
+            // 
             // SetColorForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);

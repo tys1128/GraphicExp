@@ -45,7 +45,7 @@
             this.绘制曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.绘制Bezier曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.绘制B样条曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.canvas = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,13 +187,16 @@
             this.绘制B样条曲线ToolStripMenuItem.Text = "绘制 B 样条曲线";
             this.绘制B样条曲线ToolStripMenuItem.Click += new System.EventHandler(this.绘制B样条曲线ToolStripMenuItem_Click);
             // 
-            // panel1
+            // canvas
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(679, 471);
-            this.panel1.TabIndex = 1;
+            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvas.Location = new System.Drawing.Point(0, 25);
+            this.canvas.Name = "canvas";
+            this.canvas.Size = new System.Drawing.Size(679, 471);
+            this.canvas.TabIndex = 1;
+            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
+            this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
+            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
             // Form1
             // 
@@ -201,7 +204,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(679, 496);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.canvas);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -236,7 +239,7 @@
         private System.Windows.Forms.ToolStripMenuItem 设置数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 绘制Bezier曲线ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 绘制B样条曲线ToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel canvas;
     }
 }
 

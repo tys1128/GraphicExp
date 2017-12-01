@@ -17,18 +17,18 @@ namespace CGWORK0913
         public Form1()
         {
             InitializeComponent();
-            graphics = panel1.CreateGraphics();
-
+            graphics = canvas.CreateGraphics();
+            //graphics.Save
         }
 
-        string currentMode = "图形应用";//标记当前模式名
+        string currentMode = "图形绘制";//标记当前模式名
         FormData dfData = new FormData();//存储数据；
 
         /// <summary>
         /// 判断当前的模式,
         /// </summary>
         /// <param name="thisMode">模式名称</param>
-        void JudgeMod(string thisMode)
+        void ConvertToMod(string thisMode)
         {
             if (currentMode != thisMode)
             {
@@ -44,13 +44,13 @@ namespace CGWORK0913
 
         private void 绘制矩形ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JudgeMod("图形绘制");
-
+            ConvertToMod("图形绘制");
+            
         }
 
         private void 绘制圆形ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JudgeMod("图形绘制");
+            ConvertToMod("图形绘制");
 
         }
 
@@ -64,7 +64,7 @@ namespace CGWORK0913
 
         private void 绘制多边形ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JudgeMod("区域填充");
+            ConvertToMod("区域填充");
 
         }
 
@@ -79,19 +79,19 @@ namespace CGWORK0913
 
         private void 绘制立方体ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JudgeMod("三维变换");
+            ConvertToMod("三维变换");
 
         }
 
         private void 延X轴方向平移ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JudgeMod("三维变换");
+            ConvertToMod("三维变换");
 
         }
 
         private void 绕X轴旋转ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JudgeMod("三维变换");
+            ConvertToMod("三维变换");
 
         }
 
@@ -105,13 +105,64 @@ namespace CGWORK0913
 
         private void 绘制Bezier曲线ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JudgeMod("绘制曲线");
+            ConvertToMod("绘制曲线");
 
         }
 
         private void 绘制B样条曲线ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ConvertToMod("绘制曲线");
+        }
 
+        bool mouseIsDown = false;
+        Point startPoint, endPoint;
+        private void canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (currentMode)
+            {
+                case "图形绘制":
+                    canvas_MouseDown矩形(sender, e); break;
+                case "区域填充":
+                    canvas_MouseDown矩形(sender, e); break;
+                case "三维变换":
+                    canvas_MouseDown矩形(sender, e); break;
+                case "绘制曲线":
+                    canvas_MouseDown矩形(sender, e); break;
+
+            }
+            
+        }
+
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            switch (currentMode)
+            {
+                case "图形绘制":
+                    canvas_MouseMove矩形(sender, e); break;
+                case "区域填充":
+                    canvas_MouseDown矩形(sender, e); break;
+                case "三维变换":
+                    canvas_MouseDown矩形(sender, e); break;
+                case "绘制曲线":
+                    canvas_MouseDown矩形(sender, e); break;
+
+            }
+        }
+
+        private void canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            switch (currentMode)
+            {
+                case "图形绘制":
+                    canvas_MouseUp矩形(sender, e); break;
+                case "区域填充":
+                    canvas_MouseDown矩形(sender, e); break;
+                case "三维变换":
+                    canvas_MouseDown矩形(sender, e); break;
+                case "绘制曲线":
+                    canvas_MouseDown矩形(sender, e); break;
+
+            }
         }
     }
 }

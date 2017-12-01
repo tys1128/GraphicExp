@@ -29,5 +29,16 @@ namespace CGWORK0913
             groupBox2.Text = "设置边界颜色";
 
         }
+
+        private void OKButton_Click_1(object sender, EventArgs e)
+        {
+            dfData.r3 = Convert.ToInt32(textBox1.Text);
+            dfData.g3 = Convert.ToInt32(textBox2.Text);
+            dfData.b3 = Convert.ToInt32(textBox3.Text);
+            dfData.r4 = Convert.ToInt32(textBox6.Text);
+            dfData.g4 = Convert.ToInt32(textBox5.Text);
+            dfData.b4 = Convert.ToInt32(textBox4.Text);
+            this.Close();
+        }
     }
 }

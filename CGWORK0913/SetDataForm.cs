@@ -19,6 +19,14 @@ namespace CGWORK0913
             this.dfData = dfData;
             textBox6.Text = dfData.step.ToString();
             textBox5.Text = dfData.angle.ToString();
+            
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+            dfData.step = Convert.ToInt32(textBox6.Text);
+            dfData.angle = Convert.ToInt32(textBox5.Text);
+            this.Close();
         }
     }
 }

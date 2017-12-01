@@ -56,6 +56,7 @@
             this.OKButton.TabIndex = 5;
             this.OKButton.Text = "确定";
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // groupBox2
             // 
