@@ -127,10 +127,11 @@ namespace CGWORK0913
                     if (b.Y > i + 1) mp[i + 1].Add(b, null);
                 }
             }
-
         }
 
-        //多边形
+        /// <summary>
+        /// 区域填充--多边形
+        /// </summary>
         Polygon poly = new Polygon();
         private void canvas_MouseDown多边形(object sender, MouseEventArgs e)
         {

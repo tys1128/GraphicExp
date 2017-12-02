@@ -52,6 +52,7 @@ namespace CGWORK0913
         private void 清空屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             graphics.Clear(Color.White);
+            poly = new Polygon();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -97,20 +98,14 @@ namespace CGWORK0913
         private void 绘制立方体ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConvertToModAndState("三维变换", "立方体");
-            InitAndDraw();
-            Init();
-            DrawCube(graphics);
+            cube = new Cube();
+            DrawAFrame();
         }
 
-        private void 延X轴方向平移ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 平移旋转ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConvertToModAndState("三维变换", "平移旋转");
-
-        }
-
-        private void 绕X轴旋转ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConvertToModAndState("三维变换", "圆形");
+            DrawAFrame();
 
         }
 

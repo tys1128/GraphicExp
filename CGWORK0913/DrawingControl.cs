@@ -111,7 +111,8 @@ namespace CGWORK0913
                         switch (currentState)
                         {
                             case "平移旋转":
-                                Form1_KeyDown平移旋转(sender, e); break;
+                                Form1_KeyDown平移旋转(sender, e);
+                                break;
                         }
                     }
                     break;

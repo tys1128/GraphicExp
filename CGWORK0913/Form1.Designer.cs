@@ -39,8 +39,7 @@
             this.设置颜色ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.三维变换ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.绘制立方体ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.延X轴方向平移ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.绕X轴旋转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.平移旋转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.绘制曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.绘制Bezier曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +81,7 @@
             this.绘制圆形ToolStripMenuItem,
             this.设置颜色ToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "图形绘制";
             // 
             // 绘制矩形ToolStripMenuItem
@@ -112,7 +111,7 @@
             this.绘制多边形ToolStripMenuItem,
             this.设置颜色ToolStripMenuItem1});
             this.区域填充ToolStripMenuItem.Name = "区域填充ToolStripMenuItem";
-            this.区域填充ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.区域填充ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.区域填充ToolStripMenuItem.Text = "区域填充";
             // 
             // 绘制多边形ToolStripMenuItem
@@ -133,38 +132,30 @@
             // 
             this.三维变换ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.绘制立方体ToolStripMenuItem,
-            this.延X轴方向平移ToolStripMenuItem,
-            this.绕X轴旋转ToolStripMenuItem,
+            this.平移旋转ToolStripMenuItem,
             this.设置数据ToolStripMenuItem});
             this.三维变换ToolStripMenuItem.Name = "三维变换ToolStripMenuItem";
-            this.三维变换ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.三维变换ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.三维变换ToolStripMenuItem.Text = "三维变换";
             // 
             // 绘制立方体ToolStripMenuItem
             // 
             this.绘制立方体ToolStripMenuItem.Name = "绘制立方体ToolStripMenuItem";
-            this.绘制立方体ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.绘制立方体ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.绘制立方体ToolStripMenuItem.Text = "绘制立方体";
             this.绘制立方体ToolStripMenuItem.Click += new System.EventHandler(this.绘制立方体ToolStripMenuItem_Click);
             // 
-            // 延X轴方向平移ToolStripMenuItem
+            // 平移旋转ToolStripMenuItem
             // 
-            this.延X轴方向平移ToolStripMenuItem.Name = "延X轴方向平移ToolStripMenuItem";
-            this.延X轴方向平移ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.延X轴方向平移ToolStripMenuItem.Text = "延 x 轴方向平移";
-            this.延X轴方向平移ToolStripMenuItem.Click += new System.EventHandler(this.延X轴方向平移ToolStripMenuItem_Click);
-            // 
-            // 绕X轴旋转ToolStripMenuItem
-            // 
-            this.绕X轴旋转ToolStripMenuItem.Name = "绕X轴旋转ToolStripMenuItem";
-            this.绕X轴旋转ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.绕X轴旋转ToolStripMenuItem.Text = "绕 x 轴旋转";
-            this.绕X轴旋转ToolStripMenuItem.Click += new System.EventHandler(this.绕X轴旋转ToolStripMenuItem_Click);
+            this.平移旋转ToolStripMenuItem.Name = "平移旋转ToolStripMenuItem";
+            this.平移旋转ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.平移旋转ToolStripMenuItem.Text = "平移旋转";
+            this.平移旋转ToolStripMenuItem.Click += new System.EventHandler(this.平移旋转ToolStripMenuItem_Click);
             // 
             // 设置数据ToolStripMenuItem
             // 
             this.设置数据ToolStripMenuItem.Name = "设置数据ToolStripMenuItem";
-            this.设置数据ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.设置数据ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.设置数据ToolStripMenuItem.Text = "设置数据";
             this.设置数据ToolStripMenuItem.Click += new System.EventHandler(this.设置数据ToolStripMenuItem_Click);
             // 
@@ -174,7 +165,7 @@
             this.绘制Bezier曲线ToolStripMenuItem,
             this.绘制B样条曲线ToolStripMenuItem});
             this.绘制曲线ToolStripMenuItem.Name = "绘制曲线ToolStripMenuItem";
-            this.绘制曲线ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.绘制曲线ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.绘制曲线ToolStripMenuItem.Text = "绘制曲线";
             // 
             // 绘制Bezier曲线ToolStripMenuItem
@@ -249,8 +240,7 @@
         private System.Windows.Forms.ToolStripMenuItem 绘制多边形ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置颜色ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 绘制立方体ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 延X轴方向平移ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 绕X轴旋转ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 平移旋转ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 绘制Bezier曲线ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 绘制B样条曲线ToolStripMenuItem;

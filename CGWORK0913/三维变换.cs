@@ -15,19 +15,19 @@ namespace CGWORK0913
         /// <summary>
         /// 用于存储立方体的顶点
         /// </summary>
-        struct Edge
+        struct Node
         {
             public double X { get; set; }
             public double Y { get; set; }
             public double Z { get; set; }
             public double coco { get; set; }
-            public Edge(double a, double b, double c)
+            public Node(double a, double b, double c)
             {
                 X = a; Y = b; Z = c; coco = 1.0;
             }
-            public static Edge operator -(Edge lhs, Edge rhs)
+            public static Node operator -(Node lhs, Node rhs)
             {
-                return new Edge(lhs.X - rhs.X, lhs.Y - rhs.Y, lhs.Z - rhs.Z);
+                return new Node(lhs.X - rhs.X, lhs.Y - rhs.Y, lhs.Z - rhs.Z);
             }
         };
         /// <summary>
@@ -44,27 +44,33 @@ namespace CGWORK0913
                 this.d = d;
             }
         };
+        /// <summary>
+        /// 立方体
+        /// </summary>
         class Cube
         {
             public Surface[] Square { get; }
-            public Edge[] Vertex { get; }
-
+            public Node[] Vertex { get; }
+            public Node bg;
+            static int size = 80;
             public Cube()
             {
                 Square = new Surface[10];
-                Vertex = new Edge[10];
+                Vertex = new Node[10];
                 Init();
             }
             public void Init()
             {
-                Vertex[0] = new Edge(0, 0, 0);
-                Vertex[1] = new Edge(100, 0, 0);
-                Vertex[2] = new Edge(100, 100, 0);
-                Vertex[3] = new Edge(0, 100, 0);
-                Vertex[4] = new Edge(0, 0, 100);
-                Vertex[5] = new Edge(100, 0, 100);
-                Vertex[6] = new Edge(100, 100, 100);
-                Vertex[7] = new Edge(0, 100, 100);
+                bg = new Node(0, 0, 8*size);
+
+                Vertex[0] = new Node(0, 0, 0);
+                Vertex[1] = new Node(size, 0, 0);
+                Vertex[2] = new Node(size, size, 0);
+                Vertex[3] = new Node(0, size, 0);
+                Vertex[4] = new Node(0, 0, size);
+                Vertex[5] = new Node(size, 0, size);
+                Vertex[6] = new Node(size, size, size);
+                Vertex[7] = new Node(0, size, size);
 
                 Square[0] = new Surface(0, 1, 2, 3);
                 Square[1] = new Surface(1, 0, 4, 5);
@@ -76,198 +82,243 @@ namespace CGWORK0913
 
             public void MoveAloneX(int d)
             {
-                //foreach(var ver)
+                for (int i = 0; i < Vertex.Length; i++)
+                {
+                    Vertex[i].X += d;
+                }
             }
             public void MoveAloneY(int d)
             {
-
+                for (int i = 0; i < Vertex.Length; i++)
+                {
+                    Vertex[i].Y += d;
+                }
             }
             public void MoveAloneZ(int d)
             {
+                for (int i = 0; i < Vertex.Length; i++)
+                {
+                    Vertex[i].Z += d;
+                }
+            }
+            /// <summary>
+            /// 旋转
+            /// </summary>
+            /// <param name="cxcx"></param>
+            /// <param name="rad"></param>
+            void Rotation(char cxcx, double rad)
+            {
+                double pi = Math.PI;
+                double r = rad * pi / 180;
+                double s = Math.Sin(r);
+                double c = Math.Cos(r);
+
+                for (int i = 0; i < 8; i++)
+                {
+                    double x = Vertex[i].X;
+                    double y = Vertex[i].Y;
+                    double z = Vertex[i].Z;
+                    if (cxcx == 'x')
+                    {
+                        Vertex[i].Y = y * c - z * s;
+                        Vertex[i].Z = y * s + z * c;
+                    }
+                    else if (cxcx == 'y')
+                    {
+                        Vertex[i].X = x * c + z * s;
+                        Vertex[i].Z = x * (-s) + z * c;
+                    }
+                    else
+                    {
+                        Vertex[i].X = x * c - y * s;
+                        Vertex[i].Y = x * s + c * y;
+                    }
+                }
+            }
+
+            public void RotateAroundX(int rad)
+            {
+                Rotation('x', rad);
+            }
+            public void RotateAroundY(int rad)
+            {
+                Rotation('y', rad);
+
+            }
+            public void RotateAroundZ(int rad)
+            {
+                Rotation('z', rad);
 
             }
 
         }
-        Surface[] Square = new Surface[10];
-        Edge[] Vertex = new Edge[10];
 
+        /// <summary>
+        /// 三维变换立方体
+        /// </summary>
         Cube cube = new Cube();
-        Edge bg;
 
-        void Init()
+        /// <summary>
+        /// 将三维的点映射到平面,并添加了位移
+        /// </summary>
+        /// <param name="now"></param>
+        /// <returns></returns>
+        Point ray(Node now)
         {
-            bg = new Edge(0, 0, 800);
-
-            Vertex[0] = new Edge(0, 0, 0);
-            Vertex[1] = new Edge(100, 0, 0);
-            Vertex[2] = new Edge(100, 100, 0);
-            Vertex[3] = new Edge(0, 100, 0);
-            Vertex[4] = new Edge(0, 0, 100);
-            Vertex[5] = new Edge(100, 0, 100);
-            Vertex[6] = new Edge(100, 100, 100);
-            Vertex[7] = new Edge(0, 100, 100);
-
-            Square[0] = new Surface(0, 1, 2, 3);
-            Square[1] = new Surface(1, 0, 4, 5);
-            Square[2] = new Surface(1, 5, 6, 2);
-            Square[3] = new Surface(3, 2, 6, 7);
-            Square[4] = new Surface(4, 0, 3, 7);
-            Square[5] = new Surface(7, 6, 5, 4);
-        }
-
-
-        Point ray(Edge now)
-        {
-            Edge tt = new Edge();
+            Node tt = new Node();
+            Point kk = new Point();
             tt.coco = now.Z / (-800) + 1;
             tt.X = now.X / tt.coco;
             tt.Y = now.Y / tt.coco;
 
-            Point kk = new Point();
-            kk.X = (int)(tt.X + 0.5);
-            kk.Y = (int)(tt.Y + 0.5);
-
+            kk.X = (int)(tt.X + 0.5) + 300;
+            kk.Y = (int)(tt.Y + 0.5) + 300;
 
             return kk;
         }
 
-        void translation(char cxcx, double len)
+        Node cross(Node a, Node b)
         {
-            for (int i = 0; i < 8; i++)
-            {
-                if (cxcx == 'x') Vertex[i].X += len;
-                else if (cxcx == 'y') Vertex[i].Y += len;
-                else Vertex[i].Z += len;
-            }
-        }
-
-        void rotation(char cxcx, double rad)
-        {
-            double pi = Math.Acos(-1.0);
-            double r = rad * pi / 180;
-            double s = Math.Sin(r);
-            double c = Math.Cos(r);
-
-            for (int i = 0; i < 8; i++)
-            {
-                double x = Vertex[i].X;
-                double y = Vertex[i].Y;
-                double z = Vertex[i].Z;
-                if (cxcx == 'x')
-                {
-                    Vertex[i].Y = y * c - z * s;
-                    Vertex[i].Z = y * s + z * c;
-                }
-                else if (cxcx == 'y')
-                {
-                    Vertex[i].X = x * c + z * s;
-                    Vertex[i].Z = x * (-s) + z * c;
-                }
-                else
-                {
-                    Vertex[i].X = x * c - y * s;
-                    Vertex[i].Y = x * s + c * y;
-                }
-            }
-        }
-
-        Edge cross(Edge a, Edge b)
-        {
-            Edge tt = new Edge();
+            Node tt = new Node();
             tt.X = a.Y * b.Z - a.Z * b.Y;
             tt.Y = a.Z * b.X - a.X * b.Z;
             tt.Z = a.X * b.Y - a.Y * b.X;
             return tt;
         }
 
-        bool crss(Edge a, Edge b)
+        bool crss(Node a, Node b)
         {
             return a.X * b.X + a.Y * b.Y + a.Z * b.Z > 0;
         }
 
-        void DrawCube(Graphics graphic)
+        void DrawCube(Cube cb, Graphics graphic)
         {
+            Brush[] brushArr = {
+                Brushes.LightBlue,
+                Brushes.Red,
+                Brushes.Orange,
+                Brushes.LightGreen,
+                Brushes.Yellow,
+                Brushes.Cyan,
+            };
+            Pen pen = new Pen(Color.Black);
+
             for (int i = 0; i < 6; i++)
             {
-                Surface tt = Square[i];
-                Edge fa = cross(Vertex[tt.b] - Vertex[tt.c], Vertex[tt.a] - Vertex[tt.b]);
-                Edge fb = Vertex[tt.a] - bg;
+                Surface tt = cb.Square[i];
+                Node fa = cross(cb.Vertex[tt.b] - cb.Vertex[tt.c], cb.Vertex[tt.a] - cb.Vertex[tt.b]);
+                Node fb = cb.Vertex[tt.a] - cb.bg;
                 if (crss(fa, fb))
                 {
                     Point a, b, c, d;
-                    a = ray(Vertex[tt.a]);
-                    b = ray(Vertex[tt.b]);
-                    c = ray(Vertex[tt.c]);
-                    d = ray(Vertex[tt.d]);
+                    a = ray(cb.Vertex[tt.a]);
+                    b = ray(cb.Vertex[tt.b]);
+                    c = ray(cb.Vertex[tt.c]);
+                    d = ray(cb.Vertex[tt.d]);
 
-
-
-                    DDALine(graphic, a.X + 300, a.Y + 300, b.X + 300, b.Y + 300, Color.Black);
-                    DDALine(graphic, b.X + 300, b.Y + 300, c.X + 300, c.Y + 300, Color.Black);
-                    DDALine(graphic, c.X + 300, c.Y + 300, d.X + 300, d.Y + 300, Color.Black);
-                    DDALine(graphic, d.X + 300, d.Y + 300, a.X + 300, a.Y + 300, Color.Black);
+                    graphic.FillPolygon(brushArr[i], new Point[] { a, b, c, d });
+                    graphic.DrawLine(pen, a.X, a.Y, b.X, b.Y);
+                    graphic.DrawLine(pen, b.X, b.Y, c.X, c.Y);
+                    graphic.DrawLine(pen, c.X, c.Y, d.X, d.Y);
+                    graphic.DrawLine(pen, d.X, d.Y, a.X, a.Y);
                 }
             }
         }
 
-        private void InitAndDraw()
+        /// <summary>
+        /// 三维变换--绘制一帧，含清空操作
+        /// </summary>
+        void DrawAFrame()
         {
-            Init();
-            DrawCube(graphics);
+            graphics.Clear(Color.White);
+            DrawCube(cube, graphics);
+
         }
-
-
-
+        /// <summary>
+        /// 平移  
+        /// 按键为
+        ///   W E
+        /// A S D
+        ///     C  
+        /// 旋转
+        /// 按键为
+        /// U I O
+        /// J K L
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_KeyDown平移旋转(object sender, KeyEventArgs e)
         {
-            //平移
-            if (e.KeyCode == Keys.E)//向上 y
+            //平移    
+            if (e.KeyCode == Keys.W)//向上 y
             {
+                cube.MoveAloneY(-dfData.step);
+                DrawAFrame();
+            }
+            else if (e.KeyCode == Keys.S)//向下 y
+            {
+                cube.MoveAloneY(dfData.step);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.D)//向下 y
+            else if (e.KeyCode == Keys.A)//向左 x
             {
+                cube.MoveAloneX(-dfData.step);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.S)//向左 x
+            else if (e.KeyCode == Keys.D)//向右 x
             {
+                cube.MoveAloneX(dfData.step);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.F)//向右 x
+            else if (e.KeyCode == Keys.C)//向外 z
             {
+                cube.MoveAloneZ(dfData.step);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.W)//向外 z
+            else if (e.KeyCode == Keys.E)//向内 z
             {
-
-            }
-            else if (e.KeyCode == Keys.R)//向内 z
-            {
+                cube.MoveAloneZ(-dfData.step);
+                DrawAFrame();
 
             }
             //旋转
-            else if (e.KeyCode == Keys.I)
+            else if (e.KeyCode == Keys.I)//x上
             {
+                cube.RotateAroundX(dfData.angle);
+                DrawAFrame();
+            }
+            else if (e.KeyCode == Keys.K)//x下
+            {
+                cube.RotateAroundX(-dfData.angle);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.K)
+            else if (e.KeyCode == Keys.J)//y左
             {
+                cube.RotateAroundY(dfData.angle);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.J)
+            else if (e.KeyCode == Keys.L)//y右
             {
+                cube.RotateAroundY(-dfData.angle);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.L)
+            else if (e.KeyCode == Keys.O)//z
             {
+                cube.RotateAroundZ(dfData.angle);
+                DrawAFrame();
 
             }
-            else if (e.KeyCode == Keys.U)
+            else if (e.KeyCode == Keys.U)//z
             {
-
-            }
-            else if (e.KeyCode == Keys.O)
-            {
+                cube.RotateAroundZ(-dfData.angle);
+                DrawAFrame();
 
             }
 

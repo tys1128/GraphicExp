@@ -14,6 +14,12 @@ namespace CGWORK0913
     {
         //Bezier曲线
         Polygon bez;
+        /// <summary>
+        /// 绘制Bezier曲线
+        /// </summary>
+        /// <param name="bez"></param>
+        /// <param name="npoints">曲线上点的数量</param>
+        /// <param name="graphic"></param>
         void bezpoints(Polygon bez, int npoints, Graphics graphic)
         {
             double t, delt;
@@ -29,7 +35,6 @@ namespace CGWORK0913
                 t += delt;
             }
         }
-
         Point decas(Polygon bez, double t)
         {
             Point[] R= new Point[10];
@@ -56,6 +61,13 @@ namespace CGWORK0913
         }
         //B样条曲线
         double[] knot = new double[1000];
+        /// <summary>
+        /// 绘制B样条曲线
+        /// </summary>
+        /// <param name="bsp"></param>
+        /// <param name="k"></param>
+        /// <param name="npoints"></param>
+        /// <param name="graphic"></param>
         void bsppoints(Polygon bsp, int k, int npoints, Graphics graphic)
         {
             double u, delt;
@@ -82,8 +94,6 @@ namespace CGWORK0913
                 u += delt;
             }
         }
-
-
         Point deboor(Polygon bsp, int i, int k, double u)
         {
             double denom, alpha;
@@ -110,6 +120,7 @@ namespace CGWORK0913
             }
             return p[k - 1];
         }
+
         private void canvas_MouseDownB样条曲线形(object sender, MouseEventArgs e)
         {
             throw new NotImplementedException();
