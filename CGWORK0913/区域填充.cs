@@ -37,7 +37,7 @@ namespace CGWORK0913
         //public bool Compare(Line_poly kt1, Line_poly kt2) => kt1.X > kt2.X;
         public override int Compare(Line_poly x, Line_poly y)
         {
-            return (int)(y.X - x.X)<=0 ? -1: 1;
+            return (int)(x.X - y.X) <= 0 ? -1 : 1;
         }
     }
     public partial class Form1 : Form
@@ -61,7 +61,7 @@ namespace CGWORK0913
         /// <returns></returns>
         bool chooseColor(int x, int y)
         {
-            if (background[(x % 30) / 5, (y % 100) / 5] == '1') return true;
+            if (background[(x % 30) / 5, (y % 90) / 5] == '1') return true;
             else return false;
         }
         /// <summary>
@@ -119,7 +119,7 @@ namespace CGWORK0913
                     for (int j = (int)(a.X + 0.5) + 1; j < (int)(b.X + 0.5); j++)
                     {
                         if (chooseColor(i, j))
-                            SetPixel(graphic, j, i, dfData.GetColor多边形());
+                            SetPixel(graphic, j, i, dfData.GetColor填充字());
                     }
                     a.X = a.X + a.M;
                     b.X = b.X + b.M;

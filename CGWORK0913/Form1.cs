@@ -98,8 +98,8 @@ namespace CGWORK0913
         {
             ConvertToModAndState("三维变换", "立方体");
             InitAndDraw();
-            init();
-            cube_draw(graphics);
+            Init();
+            DrawCube(graphics);
         }
 
         private void 延X轴方向平移ToolStripMenuItem_Click(object sender, EventArgs e)
