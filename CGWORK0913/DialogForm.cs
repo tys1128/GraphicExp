@@ -39,19 +39,20 @@ namespace CGWORK0913
         public int r4 = 0, g4 = 0, b4 = 0;//填充字体颜色
         public int step = 1, angle = 10;//步长、角度
 
-        public Color GetColor1()
+
+        public Color GetColor矩形()
         {
             return Color.FromArgb(r1, g1, b1);
         }
-        public Color GetColor2()
+        public Color GetColor圆形()
         {
             return Color.FromArgb(r2, g2, b3);
         }
-        public Color GetColor3()
+        public Color GetColor多边形()
         {
             return Color.FromArgb(r3, g3, b3);
         }
-        public Color GetColor4()
+        public Color GetColor填充字()
         {
             return Color.FromArgb(r4, g4, b4);
         }

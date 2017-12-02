@@ -46,7 +46,7 @@ namespace CGWORK0913
         /// <param name="grph"></param>
         void PaintRec(Point st, Point ed, Graphics grph)
         {
-            Color color_Rec = dfData.GetColor1();
+            Color color_Rec = dfData.GetColor矩形();
             DDALine(grph, st.X, st.Y, st.X, ed.Y, color_Rec);
             DDALine(grph, st.X, st.Y, ed.X, st.Y, color_Rec);
             DDALine(grph, st.X, ed.Y, ed.X, ed.Y, color_Rec);
@@ -66,7 +66,7 @@ namespace CGWORK0913
             x = 0;
             y = R;
             p = 3 - 2 * R;
-            Color color_Cir = dfData.GetColor2();
+            Color color_Cir = dfData.GetColor圆形();
             for (; x <= y; x++)
             {
                 SetPixel(grph,st.X + x, st.Y + y, color_Cir);
