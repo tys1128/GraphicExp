@@ -63,6 +63,9 @@
     <Compile Include="DrawingControl.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="三维变换.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="区域填充.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +103,9 @@
     </Compile>
     <Compile Include="SetDataForm.Designer.cs">
       <DependentUpon>SetDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="绘制曲线.cs">
+      <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="DialogForm.resx">
       <DependentUpon>DialogForm.cs</DependentUpon>

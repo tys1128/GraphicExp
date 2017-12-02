@@ -45,8 +45,9 @@
             this.绘制曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.绘制Bezier曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.绘制B样条曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.canvas = new System.Windows.Forms.Panel();
             this.清空屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.canvas = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,10 +56,11 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.MenuBar;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.清空屏幕ToolStripMenuItem});
+            this.清空屏幕ToolStripMenuItem,
+            this.TextBox});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(679, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(679, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,7 +72,7 @@
             this.三维变换ToolStripMenuItem,
             this.绘制曲线ToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(68, 21);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(68, 23);
             this.toolStripMenuItem1.Text = "图形应用";
             // 
             // toolStripMenuItem2
@@ -80,7 +82,7 @@
             this.绘制圆形ToolStripMenuItem,
             this.设置颜色ToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItem2.Text = "图形绘制";
             // 
             // 绘制矩形ToolStripMenuItem
@@ -110,7 +112,7 @@
             this.绘制多边形ToolStripMenuItem,
             this.设置颜色ToolStripMenuItem1});
             this.区域填充ToolStripMenuItem.Name = "区域填充ToolStripMenuItem";
-            this.区域填充ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.区域填充ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.区域填充ToolStripMenuItem.Text = "区域填充";
             // 
             // 绘制多边形ToolStripMenuItem
@@ -135,7 +137,7 @@
             this.绕X轴旋转ToolStripMenuItem,
             this.设置数据ToolStripMenuItem});
             this.三维变换ToolStripMenuItem.Name = "三维变换ToolStripMenuItem";
-            this.三维变换ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.三维变换ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.三维变换ToolStripMenuItem.Text = "三维变换";
             // 
             // 绘制立方体ToolStripMenuItem
@@ -172,7 +174,7 @@
             this.绘制Bezier曲线ToolStripMenuItem,
             this.绘制B样条曲线ToolStripMenuItem});
             this.绘制曲线ToolStripMenuItem.Name = "绘制曲线ToolStripMenuItem";
-            this.绘制曲线ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.绘制曲线ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.绘制曲线ToolStripMenuItem.Text = "绘制曲线";
             // 
             // 绘制Bezier曲线ToolStripMenuItem
@@ -189,23 +191,27 @@
             this.绘制B样条曲线ToolStripMenuItem.Text = "绘制 B 样条曲线";
             this.绘制B样条曲线ToolStripMenuItem.Click += new System.EventHandler(this.绘制B样条曲线ToolStripMenuItem_Click);
             // 
-            // canvas
-            // 
-            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.canvas.Location = new System.Drawing.Point(0, 25);
-            this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(679, 471);
-            this.canvas.TabIndex = 1;
-            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
-            this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
-            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
-            // 
             // 清空屏幕ToolStripMenuItem
             // 
             this.清空屏幕ToolStripMenuItem.Name = "清空屏幕ToolStripMenuItem";
-            this.清空屏幕ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.清空屏幕ToolStripMenuItem.Size = new System.Drawing.Size(68, 23);
             this.清空屏幕ToolStripMenuItem.Text = "清空屏幕";
             this.清空屏幕ToolStripMenuItem.Click += new System.EventHandler(this.清空屏幕ToolStripMenuItem_Click);
+            // 
+            // TextBox
+            // 
+            this.TextBox.Name = "TextBox";
+            this.TextBox.Size = new System.Drawing.Size(120, 23);
+            // 
+            // canvas
+            // 
+            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvas.Location = new System.Drawing.Point(0, 27);
+            this.canvas.Name = "canvas";
+            this.canvas.Size = new System.Drawing.Size(679, 469);
+            this.canvas.TabIndex = 1;
+            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
+            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
             // Form1
             // 
@@ -221,7 +227,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CGWORK0913";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -250,6 +256,7 @@
         private System.Windows.Forms.ToolStripMenuItem 绘制B样条曲线ToolStripMenuItem;
         private System.Windows.Forms.Panel canvas;
         private System.Windows.Forms.ToolStripMenuItem 清空屏幕ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox TextBox;
     }
 }
 

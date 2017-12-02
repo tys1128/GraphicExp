@@ -25,8 +25,8 @@ namespace CGWORK0913
 
         private void SetColorForm2_Load(object sender, EventArgs e)
         {
-            groupBox1.Text = "设置学号颜色";
-            groupBox2.Text = "设置边界颜色";
+            groupBox1.Text = "设置边界颜色";
+            groupBox2.Text = "设置学号颜色";
 
         }
 

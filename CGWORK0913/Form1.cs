@@ -18,6 +18,8 @@ namespace CGWORK0913
         {
             InitializeComponent();
             graphics = canvas.CreateGraphics();
+            TextBox.Text = "图形绘制" + "-" + "矩形";
+
             //graphics.Save
         }
         /// <summary>
@@ -29,7 +31,7 @@ namespace CGWORK0913
         /// </summary>
         string currentState = "矩形";
         /// <summary>
-        /// 存储数据
+        /// 存储颜色数据
         /// </summary>
         FormData dfData = new FormData();
 
@@ -45,6 +47,7 @@ namespace CGWORK0913
                 graphics.Clear(Color.White);
             }
             currentState = thisState;
+            TextBox.Text = thisMode + "-"+ thisState;
         }
         private void 清空屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -94,7 +97,9 @@ namespace CGWORK0913
         private void 绘制立方体ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConvertToModAndState("三维变换", "立方体");
-
+            InitAndDraw();
+            init();
+            cube_draw(graphics);
         }
 
         private void 延X轴方向平移ToolStripMenuItem_Click(object sender, EventArgs e)

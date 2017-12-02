@@ -39,18 +39,7 @@ namespace CGWORK0913
                         switch (currentState)
                         {
                             case "多边形":
-                                canvas_MouseDown矩形(sender, e); break;
-                        }
-                    }
-                    break;
-                case "三维变换":
-                    {
-                        switch (currentState)
-                        {
-                            case "立方体":
-                                canvas_MouseDown矩形(sender, e); break;
-                            case "平移旋转":
-                                canvas_MouseDown圆形(sender, e); break;
+                                canvas_MouseDown多边形(sender, e); break;
                         }
                     }
                     break;
@@ -59,16 +48,17 @@ namespace CGWORK0913
                         switch (currentState)
                         {
                             case "Bezier曲线":
-                                canvas_MouseDown矩形(sender, e); break;
+                                canvas_MouseDownBezier曲线(sender, e); break;
                             case "B样条曲线":
-                                canvas_MouseDown圆形(sender, e); break;
+                                canvas_MouseDownB样条曲线形(sender, e); break;
                         }
                     }
                     break;
             }
-
         }
-        
+
+
+
         /// <summary>
         /// 鼠标左键释放
         /// </summary>
@@ -89,26 +79,6 @@ namespace CGWORK0913
                         }
                     }
                     break;
-                case "区域填充":
-                    {
-                        switch (currentState)
-                        {
-                            case "多边形":
-                                canvas_MouseUp矩形(sender, e); break;
-                        }
-                    }
-                    break;
-                case "三维变换":
-                    {
-                        switch (currentState)
-                        {
-                            case "立方体":
-                                canvas_MouseUp矩形(sender, e); break;
-                            case "平移旋转":
-                                canvas_MouseUp圆形(sender, e); break;
-                        }
-                    }
-                    break;
                 case "绘制曲线":
                     {
                         switch (currentState)
@@ -122,19 +92,30 @@ namespace CGWORK0913
                     break;
             }
         }
-        private void canvas_MouseMove(object sender, MouseEventArgs e)
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            //switch (currentMode)
-            //{
-            //    case "图形绘制":
-            //        canvas_MouseMove矩形(sender, e); break;
-            //    case "区域填充":
-            //        canvas_MouseDown矩形(sender, e); break;
-            //    case "三维变换":
-            //        canvas_MouseDown矩形(sender, e); break;
-            //    case "绘制曲线":
-            //        canvas_MouseDown矩形(sender, e); break;
-            //}
+            switch (currentMode)
+            {
+                case "区域填充":
+                    {
+                        switch (currentState)
+                        {
+                            case "多边形":
+                                Form1_KeyDown多边形(sender, e); break;
+                        }
+                    }
+                    break;
+                case "三维变换":
+                    {
+                        switch (currentState)
+                        {
+                            case "平移旋转":
+                                Form1_KeyDown平移旋转(sender, e); break;
+                        }
+                    }
+                    break;
+            }
         }
     }
 }
