@@ -12,7 +12,7 @@ namespace CGWORK0913
 {
     public partial class Form1 : Form
     {
-        bool mouseIsDown = false;
+        //bool mouseIsDown = false;
         Point startPoint, endPoint;
         /// <summary>
         /// 鼠标左键按下
@@ -50,7 +50,7 @@ namespace CGWORK0913
                             case "Bezier曲线":
                                 canvas_MouseDownBezier曲线(sender, e); break;
                             case "B样条曲线":
-                                canvas_MouseDownB样条曲线形(sender, e); break;
+                                canvas_MouseDownB样条曲线(sender, e); break;
                         }
                     }
                     break;
@@ -75,17 +75,6 @@ namespace CGWORK0913
                             case "矩形":
                                 canvas_MouseUp矩形(sender, e); break;
                             case "圆形":
-                                canvas_MouseUp圆形(sender, e); break;
-                        }
-                    }
-                    break;
-                case "绘制曲线":
-                    {
-                        switch (currentState)
-                        {
-                            case "Bezier曲线":
-                                canvas_MouseUp矩形(sender, e); break;
-                            case "B样条曲线":
                                 canvas_MouseUp圆形(sender, e); break;
                         }
                     }
@@ -116,7 +105,19 @@ namespace CGWORK0913
                         }
                     }
                     break;
+                case "绘制曲线":
+                    {
+                        switch (currentState)
+                        {
+                            case "Bezier曲线":
+                                Form1_KeyDownBezier曲线(sender, e); break;
+                            case "B样条曲线":
+                                Form1_KeyDownB样条曲线(sender, e); break;
+                        }
+                    }
+                    break;
             }
         }
+
     }
 }

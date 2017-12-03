@@ -46,7 +46,7 @@ namespace CGWORK0913
         }
         public Color GetColor圆形()
         {
-            return Color.FromArgb(r2, g2, b3);
+            return Color.FromArgb(r2, g2, b2);
         }
         public Color GetColor多边形()
         {

@@ -44,15 +44,17 @@ namespace CGWORK0913
             if (currentMode != thisMode)
             {
                 currentMode = thisMode;
-                graphics.Clear(Color.White);
+                清空屏幕初始化ToolStripMenuItem_Click(null, null);
             }
             currentState = thisState;
-            TextBox.Text = thisMode + "-"+ thisState;
+            TextBox.Text = thisMode + "-" + thisState;
         }
-        private void 清空屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 清空屏幕初始化ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             graphics.Clear(Color.White);
             poly = new Polygon();
+            polyB = new Polygon();
+            cube = new Cube();
         }
 
         private void Form1_Load(object sender, EventArgs e)

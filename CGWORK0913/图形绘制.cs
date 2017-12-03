@@ -92,14 +92,12 @@ namespace CGWORK0913
         //矩形
         private void canvas_MouseDown矩形(object sender, MouseEventArgs e)
         {
-            mouseIsDown = true;
             startPoint = e.Location;
             //endPoint = e.Location;
         }
 
         private void canvas_MouseUp矩形(object sender, MouseEventArgs e)
         {
-            mouseIsDown = false;
             endPoint = e.Location;
             PaintRec(startPoint, endPoint, graphics);
         }
@@ -107,13 +105,11 @@ namespace CGWORK0913
         //圆形
         private void canvas_MouseDown圆形(object sender, MouseEventArgs e)
         {
-            mouseIsDown = true;
             startPoint = e.Location;
         }
 
         private void canvas_MouseUp圆形(object sender, MouseEventArgs e)
         {
-            mouseIsDown = false;
             endPoint = e.Location;
             BresenhamCircle(startPoint, endPoint, graphics);
         }

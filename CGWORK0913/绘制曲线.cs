@@ -12,12 +12,10 @@ namespace CGWORK0913
 {
     public partial class Form1 : Form
     {
-        //Bezier曲线
-        Polygon bez;
         /// <summary>
         /// 绘制Bezier曲线
         /// </summary>
-        /// <param name="bez"></param>
+        /// <param name="bez">控制多边形</param>
         /// <param name="npoints">曲线上点的数量</param>
         /// <param name="graphic"></param>
         void bezpoints(Polygon bez, int npoints, Graphics graphic)
@@ -30,14 +28,14 @@ namespace CGWORK0913
             for (int i = 0; i <= npoints; i++)
             {
                 ed = decas(bez, t);
-                DDALine(graphic, st.X, st.Y, ed.X, ed.Y, Color.Black);
+                DDALine(graphic, st.X, st.Y, ed.X, ed.Y, Color.Cyan);
                 st = ed;
                 t += delt;
             }
         }
         Point decas(Polygon bez, double t)
         {
-            Point[] R= new Point[10];
+            Point[] R = new Point[10];
             Point[] Q = new Point[10];
             Point P0 = new Point();
             for (int i = 0; i < bez.list.Count; i++)
@@ -61,21 +59,22 @@ namespace CGWORK0913
         }
         //B样条曲线
         double[] knot = new double[1000];
+
         /// <summary>
         /// 绘制B样条曲线
         /// </summary>
-        /// <param name="bsp"></param>
-        /// <param name="k"></param>
-        /// <param name="npoints"></param>
+        /// <param name="bsp">控制多边形;  初始点记三次,结束点记三次</param>
+        /// <param name="k">k阶B样条</param>
+        /// <param name="npoints">为绘制曲线上的点所用的点的数目</param>
         /// <param name="graphic"></param>
         void bsppoints(Polygon bsp, int k, int npoints, Graphics graphic)
         {
             double u, delt;
             int n = (int)bsp.list.Count - 1;
             int i = 0;
-            for ( i = 0; i < k; i++) knot[i] = 0;
-            for ( i = k; i <= n; i++) knot[i] = i - k + 1;
-            for ( i = n + k; i > n; i--) knot[i] = n - k + 2;
+            for (i = 0; i <= n + k; i++) knot[i] = i;
+            //for ( i = k; i <= n; i++) knot[i] = i - k + 1;
+            //for ( i = n + k; i > n; i--) knot[i] = n - k + 2;
 
             delt = (knot[n + 1] - knot[k - 1]) / (double)npoints;
             i = k - 1;
@@ -88,7 +87,7 @@ namespace CGWORK0913
                 while ((i < n) && u > knot[i + 1]) i++;
                 ed = deboor(bsp, i, k, u);
                 if (flag)
-                    DDALine(graphic, st.X, st.Y, ed.X, ed.Y, Color.Black);
+                    DDALine(graphic, st.X, st.Y, ed.X, ed.Y, Color.DarkCyan);
                 flag = true;
                 st = ed;
                 u += delt;
@@ -121,15 +120,71 @@ namespace CGWORK0913
             return p[k - 1];
         }
 
-        private void canvas_MouseDownB样条曲线形(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+
+
+        /// <summary>
+        /// B样条曲线和Bezier曲线的控制多边形
+        /// </summary>
+        Polygon polyB = new Polygon();
 
         private void canvas_MouseDownBezier曲线(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            polyB.list.Add(e.Location);
+            int count = polyB.list.Count;
+            //画线
+            if (polyB.list.Count >= 2)
+            {
+                Point st = polyB.list[count - 1];
+                Point ed = polyB.list[count - 2];
+
+                DDALine(graphics, st.X, st.Y, ed.X, ed.Y, Color.DarkGray);
+            }
         }
+        private void Form1_KeyDownBezier曲线(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bezpoints(polyB, 2000, graphics);
+                polyB.list.Clear();
+            }
+
+        }
+
+
+        private void canvas_MouseDownB样条曲线(object sender, MouseEventArgs e)
+        {
+            //画线
+            if(polyB.list.Count == 0)//初始点记三次
+            {
+                for(int i = 0; i < 3; i++)
+                {
+                    polyB.list.Add(e.Location);
+                }
+            }
+            else if (polyB.list.Count >= 2)
+            {
+                polyB.list.Add(e.Location);
+                Point st = polyB.list[polyB.list.Count - 1];
+                Point ed = polyB.list[polyB.list.Count - 2];
+
+                DDALine(graphics, st.X, st.Y, ed.X, ed.Y, Color.DarkGray);
+            }
+
+        }
+        private void Form1_KeyDownB样条曲线(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                for (int i = 0; i < 2; i++)//结束点记3次(1 + 2)
+                {
+                    polyB.list.Add(polyB.list.Last());
+                }
+                bsppoints(polyB , 4, 2000, graphics);
+                polyB.list.Clear();
+            }
+
+        }
+
 
     }
 }
