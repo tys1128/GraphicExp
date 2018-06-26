@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,16 +13,11 @@ namespace CGWORK0913
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Graphics对象
+        /// </summary>
         Graphics graphics;
-
-        public Form1()
-        {
-            InitializeComponent();
-            graphics = canvas.CreateGraphics();
-            TextBox.Text = "图形绘制" + "-" + "矩形";
-
-            //graphics.Save
-        }
+        Bitmap bitmap;
         /// <summary>
         /// 标记当前的二级菜单
         /// </summary>
@@ -34,11 +30,35 @@ namespace CGWORK0913
         /// 存储颜色数据
         /// </summary>
         FormData dfData = new FormData();
+        /// <summary>
+        /// 保存图像状态
+        /// </summary>
 
+
+
+        public Form1()
+        {
+            InitializeComponent();
+            bitmap = new Bitmap(700, 600);
+
+            graphics = Graphics.FromImage(bitmap);
+            canvas.BackgroundImage = bitmap;
+
+            graphics = canvas.CreateGraphics();
+
+            TextBox.Text = "图形绘制" + "-" + "矩形";
+
+        }
         /// <summary>
         /// 判断当前的模式,
         /// </summary>
         /// <param name="thisMode">模式名称</param>
+        ///
+        /// <summary>
+        /// 判断当前的模式
+        /// </summary>
+        /// <param name="thisMode">二级菜单名称</param>
+        /// <param name="thisState">三级菜单名称</param>
         void ConvertToModAndState(string thisMode, string thisState)
         {
             if (currentMode != thisMode)
@@ -56,6 +76,13 @@ namespace CGWORK0913
             polyB = new Polygon();
             cube = new Cube();
         }
+
+        private void canvas_Paint(object sender, PaintEventArgs e)
+        {
+            //graphics.Restore(gState);
+            canvas.BackgroundImage = bitmap;
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {

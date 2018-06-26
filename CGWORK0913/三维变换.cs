@@ -208,7 +208,7 @@ namespace CGWORK0913
                 Surface tt = cb.Square[i];
                 Node fa = cross(cb.Vertex[tt.b] - cb.Vertex[tt.c], cb.Vertex[tt.a] - cb.Vertex[tt.b]);
                 Node fb = cb.Vertex[tt.a] - cb.bg;
-                if (crss(fa, fb))
+                if (!crss(fa, fb))
                 {
                     Point a, b, c, d;
                     a = ray(cb.Vertex[tt.a]);

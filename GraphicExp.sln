@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicExp", "GraphicExp\GraphicExp.csproj", "{61539CA8-80CF-447D-A2A5-534F4EF88F2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~GraphicExp", "GraphicExp\~GraphicExp.csproj", "{61539CA8-80CF-447D-A2A5-534F4EF88F2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGWORK0913", "CGWORK0913\CGWORK0913.csproj", "{7F9552EB-27A6-4152-83B7-E1A5CEF3B978}"
 EndProject
